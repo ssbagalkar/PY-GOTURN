@@ -13,6 +13,10 @@ def cropPadImage(bbox_tight, image):
     :returns: TODO
 
     """
+    print("[INFO]:Entered cropPadImage..")
+    print("[INFO]:Passing {} {} {} {} ".format( int(bbox_tight.x1), int(bbox_tight.y1), int(bbox_tight.x2), int(bbox_tight.y2) ))
+    print("--------------------------------------------------------")
+    print("\t\t")
     pad_image_location = computeCropPadImageLocation(bbox_tight, image)
     roi_left = min(pad_image_location.x1, (image.shape[1] - 1))
     roi_bottom = min(pad_image_location.y1, (image.shape[0] - 1))
@@ -46,20 +50,28 @@ def computeCropPadImageLocation(bbox_tight, image):
     :returns: TODO
 
     """
-
+    print("[INFO]:Entered computeCropPadImageLocation...")
     # Center of the bounding box
     bbox_center_x = bbox_tight.get_center_x()
     bbox_center_y = bbox_tight.get_center_y()
+    print("[INFO]: X_center: {} Y_center: {}".format(bbox_center_x, bbox_center_y))
 
     image_height = image.shape[0]
     image_width = image.shape[1]
+    print("[INFO]:Image height : {}".format(image_height))
+    print("[INFO]:Image width : {}".format(image_width))
 
     # Padded output width and height
     output_width = bbox_tight.compute_output_width()
     output_height = bbox_tight.compute_output_height()
 
+    print("[INFO]:padded output width: {}".format(output_width))
+    print("[INFO]:padded output height: {}".format(output_height))
+
     roi_left = max(0.0, bbox_center_x - (output_width / 2.))
     roi_bottom = max(0.0, bbox_center_y - (output_height / 2.))
+    print("[INFO]:roi left: {}".format(roi_left))
+    print("[INFO]:padded output height: {}".format(roi_bottom))
 
     # Padded roi width
     left_half = min(output_width / 2., bbox_center_x)
@@ -71,6 +83,10 @@ def computeCropPadImageLocation(bbox_tight, image):
     bottom_half = min(output_height / 2., image_height - bbox_center_y)
     roi_height = max(1.0, top_half + bottom_half)
 
+    print("[INFO]:Padded roi width:{}".format(roi_width))
+    print("[INFO]:Padded roi height:{}".format(roi_height))
+
+    print("[INFO]:Padded image location in original image left {} bottom {} left + width{} bottom + height {}".format(roi_left, roi_bottom, roi_left + roi_width, roi_bottom + roi_height))
     # Padded image location in the original image
     objPadImageLocation = BoundingBox(roi_left, roi_bottom, roi_left + roi_width, roi_bottom + roi_height)
 
