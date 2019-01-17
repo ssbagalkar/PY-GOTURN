@@ -28,8 +28,9 @@ class tracker:
     def track(self, image_curr, objRegressor):
         """TODO: Docstring for tracker.
         :returns: TODO
-
         """
+        print("Entered tracking function..")
+        print("[INFO]:Passing {} {} {} {} to cropPadImage function..".format( int(bbox_gt.x1), int(bbox_gt.y1), int(bbox_gt.x2), int(bbox_gt.y2) ))
         target_pad, _, _,  _ = cropPadImage(self.bbox_prev_tight, self.image_prev)
         cur_search_region, search_location, edge_spacing_x, edge_spacing_y = cropPadImage(self.bbox_curr_prior_tight, image_curr)
 
