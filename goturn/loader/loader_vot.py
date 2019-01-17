@@ -6,6 +6,10 @@
 from __future__ import print_function
 import os
 from ..helper.BoundingBox import BoundingBox
+print("Imported BoundingBox")
+import sys
+sys.path.append('/home/ubuntu/GOTURN_py/PY-GOTURN/goturn/loader/')
+print(sys.path)
 from video import video
 import glob
 
