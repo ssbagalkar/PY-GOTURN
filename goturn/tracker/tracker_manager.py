@@ -89,13 +89,14 @@ class tracker_manager:
                 else:
                     sMatImageDraw = cv2.rectangle(sMatImageDraw, (int(bbox.x1), int(bbox.y1)), (int(bbox.x2), int(bbox.y2)), (255, 255, 255), 2)
 
-                bbox = objTracker.track(sMatImage, objRegressor)
-                if bbox is not None:
-                    print("BBOX[Predicted]: {}".format((int(bbox.x1), int(bbox.y1), int(bbox.x2), int(bbox.y2))))
+                print("[INFO]:Tracking begins on frame {}".format(i))
+                bbox_track = objTracker.track(sMatImage, objRegressor)
+                if bbox_track is not None:
+                    print("BBOX[Predicted]: {}".format((int(bbox_track.x1), int(bbox_track.y1), int(bbox_track.x2), int(bbox_track.y2))))
                 if opencv_version == '2':
-                    cv2.rectangle(sMatImageDraw, (int(bbox.x1), int(bbox.y1)), (int(bbox.x2), int(bbox.y2)), (255, 0, 0), 2)
+                    cv2.rectangle(sMatImageDraw, (int(bbox_track.x1), int(bbox_track.y1)), (int(bbox_track.x2), int(bbox_track.y2)), (255, 0, 0), 2)
                 else:
-                    sMatImageDraw = cv2.rectangle(sMatImageDraw, (int(bbox.x1), int(bbox.y1)), (int(bbox.x2), int(bbox.y2)), (255, 0, 0))
+                    sMatImageDraw = cv2.rectangle(sMatImageDraw, (int(bbox_track.x1), int(bbox_track.y1)), (int(bbox_track.x2), int(bbox_track.y2)), (255, 0, 0))
                 cv2.imwrite(os.path.join(dir_to_write,"img_0000"+str(i)+".png"),sMatImageDraw)
                 print("Written {} to folder  {}".format("img_"+str(i), current_case))
             print("\n\n")
