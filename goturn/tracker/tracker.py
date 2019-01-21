@@ -30,9 +30,11 @@ class tracker:
         :returns: TODO
         """
         print("Entered tracking function..")
-        print("[INFO]:Passing {} {} {} {} to cropPadImage function..".format( int(bbox_gt.x1), int(bbox_gt.y1), int(bbox_gt.x2), int(bbox_gt.y2) ))
+        print("[INFO]:Passing {} {} {} {} to cropPadImage function..".format( int(self.bbox_prev_tight.x1), int(self.bbox_prev_tight.y1), int(self.bbox_prev_tight.x2), int(self.bbox_prev_tight.y2) ))
         target_pad, _, _,  _ = cropPadImage(self.bbox_prev_tight, self.image_prev)
         cur_search_region, search_location, edge_spacing_x, edge_spacing_y = cropPadImage(self.bbox_curr_prior_tight, image_curr)
+        print("[INFO]:Target pad image size is: {}".format(target_pad))
+        print("[INFO]:current search region is : {}".format(cur_search_region))
 
         bbox_estimate = objRegressor.regress(cur_search_region, target_pad)
         print("[INFO]:BBox Estimate before correction {} {} {} {}".format( int(bbox_estimate[0,0]), int(bbox_estimate[0,1]), int(bbox_estimate[0,2]), int(bbox_estimate[0,3]) ))
