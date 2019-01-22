@@ -41,12 +41,14 @@ class tracker:
         #c_num = random.randint(1,100)
         #cv2.imwrite("/home/ubuntu/GOTURN_py/target_img_"+str(t_num)+".jpg",target_pad)
         #cv2.imwrite("/home/ubuntu/GOTURN_py/cur_search_region_"+str(c_num)+".jpg",cur_search_region)
+        print("[INFO]: search_loc:x1-> {} x2-> {} y1->{} y2->{}".format(search_location.x1, search_location.x2, search_location.y1, search_location.y2))
 
 
         bbox_estimate = objRegressor.regress(cur_search_region, target_pad)
         print("[INFO]:BBox Estimate BEFORE correction {} {} {} {}".format( int(bbox_estimate[0,0]), int(bbox_estimate[0,1]), int(bbox_estimate[0,2]), int(bbox_estimate[0,3]) ))
 
-        bbox_estimate = BoundingBox(bbox_estimate[0, 0], bbox_estimate[0, 1], bbox_estimate[0, 2], bbox_estimate[0, 3])
+        bbox_estimate = BoundingBox(bbox_estimate[0,0], bbox_estimate[0,1],bbox_estimate[0,2],bbox_estimate[0,3])
+        bbox_estimate.print_bb()
 
         # Inplace correction of bounding box
         #print("[INFO]:BBox Estimate before correction {} {} {} {}".format( int(bbox_gt.x1), int(bbox_gt.y1), int(bbox_gt.x2), int(bbox_gt.y2)  ))

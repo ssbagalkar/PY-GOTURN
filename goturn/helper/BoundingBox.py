@@ -114,11 +114,15 @@ class BoundingBox:
 
         """
         print("[INFO]:Entered uncenter function...")
+        print("[INFO]:PRE:x1-> {}, search_x1-> {}, edge_x-> {}".format(self.x1, search_location.x1, edge_spacing_x))
+        print("[INFO]:PRE:y1-> {}, search_y1-> {}, edge_y-> {}".format(self.y1, search_location.y1, edge_spacing_y))
+        print("[INFO]:PRE:x2-> {}".format(self.x2))
+        print("[INFO]:PRE:y2-> {}".format(self.y2))
         self.x1 = max(0.0, self.x1 + search_location.x1 - edge_spacing_x)
         self.y1 = max(0.0, self.y1 + search_location.y1 - edge_spacing_y)
         self.x2 = min(raw_image.shape[1], self.x2 + search_location.x1 - edge_spacing_x)
         self.y2 = min(raw_image.shape[0], self.y2 + search_location.y1 - edge_spacing_y)
-        print("[INFO]:x1-> {}, x2-> {}, y1-> {}, y2-> {}".format(self.x1,self.x2,self.y1,self.y2))
+        print("[INFO]:POST:x1-> {}, x2-> {}, y1-> {}, y2-> {}".format(self.x1,self.x2,self.y1,self.y2))
         print("[INFO]:Leaving uncenter function...")
 
     def recenter(self, search_loc, edge_spacing_x, edge_spacing_y, bbox_gt_recentered):
