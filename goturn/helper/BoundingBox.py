@@ -90,9 +90,12 @@ class BoundingBox:
         :returns: TODO
 
         """
+        print("[INFO]:Entered unscale function...")
+
         height = image.shape[0]
         width = image.shape[1]
-
+        print("[INFO]:Height-> {} , Width-> {}".format(height, width))
+        print("[INFO]:PRE:x1-> {}, x2-> {}, y1-> {}, y2-> {}".format(self.x1,self.x2,self.y1,self.y2))
         self.x1 = self.x1 / self.kScaleFactor
         self.x2 = self.x2 / self.kScaleFactor
         self.y1 = self.y1 / self.kScaleFactor
@@ -102,16 +105,21 @@ class BoundingBox:
         self.x2 = self.x2 * width
         self.y1 = self.y1 * height
         self.y2 = self.y2 * height
+        print("[INFO]:x1-> {}, x2-> {}, y1-> {}, y2-> {}".format(self.x1,self.x2,self.y1,self.y2))
+        print("[INFO]:Leaving unscale function...")
 
     def uncenter(self, raw_image, search_location, edge_spacing_x, edge_spacing_y):
         """TODO: Docstring for uncenter.
         :returns: TODO
 
         """
+        print("[INFO]:Entered uncenter function...")
         self.x1 = max(0.0, self.x1 + search_location.x1 - edge_spacing_x)
         self.y1 = max(0.0, self.y1 + search_location.y1 - edge_spacing_y)
         self.x2 = min(raw_image.shape[1], self.x2 + search_location.x1 - edge_spacing_x)
         self.y2 = min(raw_image.shape[0], self.y2 + search_location.y1 - edge_spacing_y)
+        print("[INFO]:x1-> {}, x2-> {}, y1-> {}, y2-> {}".format(self.x1,self.x2,self.y1,self.y2))
+        print("[INFO]:Leaving uncenter function...")
 
     def recenter(self, search_loc, edge_spacing_x, edge_spacing_y, bbox_gt_recentered):
         """TODO: Docstring for recenter.
