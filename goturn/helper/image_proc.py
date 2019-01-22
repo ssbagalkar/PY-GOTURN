@@ -46,7 +46,7 @@ def cropPadImage(bbox_tight, image):
 
     # rounding should be done to match the width and height
     output_image[int(edge_spacing_y):int(edge_spacing_y) + cropped_image.shape[0], int(edge_spacing_x):int(edge_spacing_x) + cropped_image.shape[1]] = cropped_image
-    print("[INFO]:rounding-> {}:{} :: {}:{}".format(int(edge_spacing_y), int(edge_spacing_y) + cropped_image.shape[0], int(edge_spacing_x),int(edge_spacing_x) + cropped_image. shape[1])
+    print("[INFO]:rounding-> {}:{} :: {}:{}".format(int(edge_spacing_y), int(edge_spacing_y) + cropped_image.shape[0], int(edge_spacing_x),int(edge_spacing_x) + cropped_image. shape[1]))
     return output_image, pad_image_location, edge_spacing_x, edge_spacing_y
 
 

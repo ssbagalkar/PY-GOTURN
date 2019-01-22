@@ -92,10 +92,11 @@ class tracker_manager:
 
                 print("[INFO]:Tracking begins on frame {}".format(i))
                 bbox_track = objTracker.track(sMatImage, objRegressor)
+                if bbox_track is not None:
+                    print("[INFO]:BBOX[Predicted]: {}".format((int(bbox_track.x1), int(bbox_track.y1), int(bbox_track.x2), int(bbox_track.y2))))
                 if abs(int(bbox.x1)-int(bbox_track.x1)) > 10 or abs(int(bbox.x2)-int(bbox_track.x2)) > 10 or abs(int(bbox.y1)-int(bbox_track.y1)) > 10 or abs(int(bbox.y2)-int(bbox_track.y2)):
                     sys.exit()
-                if bbox_track is not None:
-                    print("BBOX[Predicted]: {}".format((int(bbox_track.x1), int(bbox_track.y1), int(bbox_track.x2), int(bbox_track.y2))))
+
                 if opencv_version == '2':
                     cv2.rectangle(sMatImageDraw, (int(bbox_track.x1), int(bbox_track.y1)), (int(bbox_track.x2), int(bbox_track.y2)), (255, 0, 0), 2)
                 else:

@@ -24,8 +24,12 @@ args = vars(ap.parse_args())
 
 do_train = False
 objRegressor = regressor(args['prototxt'], args['model'], args['gpuID'], 1, do_train, logger)
+print("[INFO]:Regressor object created..")
 objTracker = tracker(False, logger)  # Currently no idea why this class is needed, eventually we shall figure it out
+print("[INFO]:Tracker object created..")
 objLoaderVot = loader_vot(args['input'], logger)
+print("[INFO]:Loader object created..")
 videos = objLoaderVot.get_videos()
+print("[INFO]:Got all videos and annotations..")
 objTrackerVis = tracker_manager(videos, objRegressor, objTracker, logger, args['output'])
 objTrackerVis.trackAll(0, 1)
